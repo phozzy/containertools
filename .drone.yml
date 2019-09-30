@@ -11,6 +11,8 @@ steps:
     path: /var/lib/containers/storage
   commands:
   - buildah unshare ./build.sh
+  settings:
+    storage_driver: overlay
 
 volumes:
 - name: container_storage
