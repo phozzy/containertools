@@ -1,0 +1,17 @@
+---
+kind: pipeline
+type: docker
+name: containertools
+
+steps:
+- name: building
+  image: docker.pkg.github.com/phozzy/containertools/containertools:latest
+  volumes:
+  - name: container_storage
+    path: /var/lib/containers/storage
+  commands:
+  - buildah unshare ./build.sh
+
+volumes:
+- name: container_storage
+  temp: {}
