@@ -1,6 +1,6 @@
 app:
-  image: phozzy/buildah
-  #image: registry.gitlab.com/containertools/containertools:30
+  image: registry.gitlab.com/containertools/containertools:30
+  registry: registry.gitlab.com
   add_docker: true
   volumes:
   - /var/lib/containers/storage
