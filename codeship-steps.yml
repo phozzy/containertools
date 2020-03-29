@@ -1,6 +1,7 @@
 - type: serial
   service: app
   steps:
+  - command: find / -name *build.sh
   - command: ls -la /root
   #- command: export $(podman run registry.fedoraproject.org/fedora grep VERSION_ID /etc/os-release)
   - command: VERSION_ID=5
