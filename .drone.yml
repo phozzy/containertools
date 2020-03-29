@@ -10,7 +10,7 @@ steps:
   - name: container_storage
     path: /var/lib/containers/storage
   commands:
-  - ./build.sh
+  - buildah unshare ./build.sh
 
 volumes:
 - name: container_storage
