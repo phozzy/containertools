@@ -5,7 +5,7 @@ name: containertools
 
 steps:
 - name: building
-  image: registry.gitlab.com/containertools/containertools:latest
+  image: quay.io/phozzy/containertools:latest
   volumes:
   - name: container_storage
     path: /var/lib/containers/storage
