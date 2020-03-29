@@ -1,6 +1,5 @@
-services:
-  app:
-    image: registry.gitlab.com/containertools/containertools:latest
-    add_docker: true
-    volumes:
-    - /var/lib/containers/storage
+app:
+  image: registry.gitlab.com/containertools/containertools:latest
+  add_docker: true
+  volumes:
+  - /var/lib/containers/storage
