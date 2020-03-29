@@ -10,7 +10,7 @@ steps:
   - name: container_storage
     path: /var/lib/containers/storage
   commands:
-  - ls -l
+  - ./build.sh
 
 volumes:
 - name: container_storage
