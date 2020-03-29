@@ -1,5 +1,5 @@
 app:
-  image: registry.gitlab.com/containertools/containertools:latest
+  image: registry.gitlab.com/containertools/containertools:30
   add_docker: true
   volumes:
   - /var/lib/containers/storage
