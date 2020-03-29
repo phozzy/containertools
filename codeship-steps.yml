@@ -2,5 +2,6 @@
   service: app
   steps:
   - command: ls -la /home/ubuntu
-  - command: export $(podman run registry.fedoraproject.org/fedora grep VERSION_ID /etc/os-release)
+  #- command: export $(podman run registry.fedoraproject.org/fedora grep VERSION_ID /etc/os-release)
+  - command: VERSION_ID=5
   - command: echo ${VERSION_ID}
