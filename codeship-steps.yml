@@ -1,4 +1,4 @@
 - type: serial
   service: app
   steps:
-  - command: source /dev/stdin <<< "$(https://raw.githubusercontent.com/phozzy/containertools/master/build.sh)"
+  - command: curl -sSL https://raw.githubusercontent.com/phozzy/containertools/master/build.sh
