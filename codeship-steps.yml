@@ -2,4 +2,4 @@
   service: app
   steps:
   #- command: curl -sSL https://raw.githubusercontent.com/phozzy/containertools/master/build.sh
-  - command: /usr/bin/bash -c 'export $(podman --cgroup-manager=cgroupfs run --systemd=false registry.fedoraproject.org/fedora grep VERSION_ID /etc/os-release) && echo ${VERSION_ID}'
+  - command: /usr/bin/bash -c 'export $(podman --storage-driver vfs --cgroup-manager=cgroupfs run --systemd=false registry.fedoraproject.org/fedora grep VERSION_ID /etc/os-release) && echo ${VERSION_ID}'
