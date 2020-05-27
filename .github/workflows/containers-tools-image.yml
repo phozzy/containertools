@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Containers tools image
-      run: buildah unshare ./local_build.sh
+      run: buildah unshare ./build.sh
