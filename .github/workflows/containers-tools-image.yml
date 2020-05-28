@@ -19,14 +19,6 @@ jobs:
     - name: print current directory
       run: pwd
     - name: Build the Containers tools image
-      run: buildah unshare ./build.sh
-    - name: list container images
-      run: podman images
-    - name: test image
-      run: podman run containertools:latest bash -c "id && pwd && buildah --version && podman --version && skopeo --version || exit"
-    - name: Login to github packages
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: echo $GITHUB_TOKEN | buildah login -u $GITHUB_ACTOR --password-stdin https://docker.pkg.github.com
-    - name: Publish
-      run: echo ${VERSION_ID}
+      run: buildah unshare ./build.sh

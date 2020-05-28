@@ -26,5 +26,12 @@ buildah config --cmd /bin/bash ${NEWCONTAINER}
 buildah config --label name=containertools ${NEWCONTAINER}
 buildah unmount ${NEWCONTAINER}
 buildah commit ${NEWCONTAINER} containertools
+echo "Test the image"
+podman run containertools bash -c "id && pwd && buildah --version && podman --version && skopeo --version || exit" || exit
+echo "Login to Github packages"
+echo $GITHUB_TOKEN | buildah login -u $GITHUB_ACTOR --password-stdin https://docker.pkg.github.com
+echo "Publish images"
 buildah tag containertools docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:latest
 buildah tag containertools docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:${VERSION_ID}
+buildah push docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:latest
+buildah push docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:${VERSION_ID}
