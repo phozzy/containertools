@@ -31,7 +31,8 @@ podman run containertools bash -c "id && pwd && buildah --version && podman --ve
 echo "Login to Github packages"
 echo $GITHUB_TOKEN | buildah login -u $GITHUB_ACTOR --password-stdin https://docker.pkg.github.com
 echo "Publish images"
-buildah tag containertools docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:latest
 buildah tag containertools docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:${VERSION_ID}
-buildah push docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:latest
+buildah tag containertools docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:latest
+podman images
 buildah push docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:${VERSION_ID}
+buildah push docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:latest
