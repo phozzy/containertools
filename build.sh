@@ -26,5 +26,5 @@ buildah config --cmd /bin/bash ${NEWCONTAINER}
 buildah config --label name=containertools ${NEWCONTAINER}
 buildah unmount ${NEWCONTAINER}
 buildah commit ${NEWCONTAINER} containertools
-buildah tag containertools containertools:latest
-buildah tag containertools containertools:${VERSION_ID}
+buildah tag containertools docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:latest
+buildah tag containertools docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:${VERSION_ID}
