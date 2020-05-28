@@ -27,4 +27,3 @@ buildah unmount ${NEWCONTAINER}
 buildah commit ${NEWCONTAINER} containertools
 buildah tag containertools containertools:latest
 buildah tag containertools containertools:${VERSION_ID}
-podman run containertools:${VERSION_ID} bash -c "buildah --version && podman --version && skopeo --version || exit" || exit

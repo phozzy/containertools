@@ -22,3 +22,5 @@ jobs:
       run: buildah unshare ./build.sh
     - name: list container images
       run: podman images
+    - name: test image
+      run: podman run containertools:latest bash -c "id && pwd && buildah --version && podman --version && skopeo --version || exit"
