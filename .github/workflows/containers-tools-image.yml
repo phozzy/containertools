@@ -28,3 +28,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: echo $GITHUB_TOKEN | buildah login -u $GITHUB_ACTOR --password-stdin https://docker.pkg.github.com
+    - name: Publish
+      run: echo ${VERSION_ID}
