@@ -24,3 +24,7 @@ jobs:
       run: podman images
     - name: test image
       run: podman run containertools:latest bash -c "id && pwd && buildah --version && podman --version && skopeo --version || exit"
+    - name: Login to github packages
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: echo $GITHUB_TOKEN | buildah login -u $GITHUB_ACTOR --password-stdin https://docker.pkg.github.com
