@@ -19,9 +19,7 @@ echo build:100000:65536 > ${SCRATCHMNT}/etc/subuid
 echo build:100000:65536 > ${SCRATCHMNT}/etc/subgid
 buildah config --env _CONTAINERS_USERNS_CONFIGURED="" ${NEWCONTAINER}
 buildah config --env BUILDAH_ISOLATION=chroot ${NEWCONTAINER}
-buildah config --env REGISTRY_AUTH_FILE=/auth.json ${NEWCONTAINER}
 buildah config --user build ${NEWCONTAINER}
-buildah run ${NEWCONTAINER} touch /auth.json
 buildah config --workingdir /home/build ${NEWCONTAINER}
 buildah config --cmd /bin/bash ${NEWCONTAINER}
 buildah config --label name=containertools ${NEWCONTAINER}
