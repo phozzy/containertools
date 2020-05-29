@@ -7,6 +7,7 @@ echo ${NEWCONTAINER}
 SCRATCHMNT=$(buildah mount ${NEWCONTAINER})
 echo ${SCRATCHMNT}
 podman run -v ${SCRATCHMNT}:/mnt:rw registry.fedoraproject.org/fedora bash -c "dnf install --installroot /mnt bash coreutils shadow-utils fuse-overlayfs buildah podman skopeo --exclude container-selinux --releasever ${VERSION_ID} --setopt=tsflags=nodocs --setopt=install_weak_deps=False --setopt=override_install_langs=en_US.utf8 -y && dnf clean all"
+buildah run ${NEWCONTAINER} useradd -D
 buildah run ${NEWCONTAINER} useradd build
 if [ -d ${SCRATCHMNT} ]; then rm -rf ${SCRATCHMNT}/var/cache ${SCRATCHMNT}/var/log/dnf* ${SCRATCHMNT}/var/log/yum.*; fi
 cp containers.conf ${SCRATCHMNT}/etc/containers/
