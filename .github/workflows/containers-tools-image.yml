@@ -16,10 +16,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: print user id
-      run: id
-    - name: print current directory
-      run: pwd
     - name: Build the Containers tools image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
