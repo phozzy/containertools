@@ -28,19 +28,18 @@ buildah unmount ${NEWCONTAINER}
 buildah commit ${NEWCONTAINER} containertools
 echo "Test the image"
 podman run containertools bash -c "id && pwd && buildah --version && podman --version && skopeo --version || exit" || exit
+buildah tag containertools docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:${VERSION_ID}
+buildah tag containertools docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:latest
+buildah tag containertools containers-docker-containerstools.bintray.io/containerstools:${VERSION_ID}
+buildah tag containertools containers-docker-containerstools.bintray.io/containerstools:latest
+podman images
 echo "Login to Github packages"
 echo $GITHUB_TOKEN | buildah login -u $GITHUB_ACTOR --password-stdin https://docker.pkg.github.com
 echo "Publish images to Github packages"
-buildah tag containertools docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:${VERSION_ID}
-buildah tag containertools docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:latest
-podman images
 buildah push docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:${VERSION_ID}
 buildah push docker.pkg.github.com/${GITHUB_REPOSITORY}/containertools:latest
 echo "Login to Bintray registry"
 echo $BTRAY | buildah login -u ph0zzy --password-stdin containers-docker-containerstools.bintray.io
 echo "Publish images to Bintray registry"
-buildah tag containerstools containers-docker-containerstools.bintray.io/containers/containerstools:${VERSION_ID}
-buildah tag containerstools containers-docker-containerstools.bintray.io/containers/containerstools:latest
-podman images
-buildah push containers-docker-containerstools.bintray.io/containers/containerstools:${VERSION_ID}
-buildah push containers-docker-containerstools.bintray.io/containers/containerstools:latest
+buildah push containers-docker-containerstools.bintray.io/containerstools:${VERSION_ID}
+buildah push containers-docker-containerstools.bintray.io/containerstools:latest
